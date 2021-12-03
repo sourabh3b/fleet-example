@@ -8730,13 +8730,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: aerospike-operator-leader-election-role
-  namespace: aerospike
+  
 rules:
 - apiGroups:
   - ""
@@ -8972,7 +8972,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: aerospike-operator-leader-election-rolebinding
-  namespace: aerospike
+  
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -8980,7 +8980,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -8993,7 +8993,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -9006,7 +9006,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -9019,7 +9019,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -9032,7 +9032,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 ---
 apiVersion: v1
 data:
@@ -9051,7 +9051,7 @@ data:
 kind: ConfigMap
 metadata:
   name: aerospike-operator-manager-config
-  namespace: aerospike
+  
 ---
 apiVersion: v1
 kind: Service
@@ -9059,7 +9059,7 @@ metadata:
   labels:
     control-plane: controller-manager
   name: aerospike-operator-controller-manager-metrics-service
-  namespace: aerospike
+  
 spec:
   ports:
   - name: https
@@ -9073,7 +9073,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: aerospike-operator-webhook-service
-  namespace: aerospike
+  
 spec:
   ports:
   - port: 443
@@ -9088,7 +9088,7 @@ metadata:
   labels:
     control-plane: controller-manager
   name: aerospike-operator-controller-manager
-  namespace: aerospike
+  
 spec:
   replicas: 1
   selector:
@@ -9159,7 +9159,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: aerospike-operator-serving-cert
-  namespace: aerospike
+  
 spec:
   dnsNames:
   - aerospike-operator-webhook-service.aerospike.svc
@@ -9173,7 +9173,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: aerospike-operator-selfsigned-issuer
-  namespace: aerospike
+  
 spec:
   selfSigned: {}
 ---
@@ -9190,7 +9190,7 @@ webhooks:
   clientConfig:
     service:
       name: aerospike-operator-webhook-service
-      namespace: aerospike
+      
       path: /mutate-asdb-aerospike-com-v1beta1-aerospikecluster
   failurePolicy: Fail
   name: maerospikecluster.kb.io
@@ -9219,7 +9219,7 @@ webhooks:
   clientConfig:
     service:
       name: aerospike-operator-webhook-service
-      namespace: aerospike
+      
       path: /validate-asdb-aerospike-com-v1beta1-aerospikecluster
   failurePolicy: Fail
   name: vaerospikecluster.kb.io
