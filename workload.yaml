@@ -8,5 +8,5 @@ spec:
   repo: "https://github.com/sourabh3b/fleet-example"
   branch: main
   paths:
-  - dedicated/base/cert-manager
   - dedicated/base/ako
+  - dedicated/base/cert-manager
