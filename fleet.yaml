@@ -4,39 +4,5 @@ diff:
   - apiVersion: admissionregistration.k8s.io/v1
     kind: MutatingWebhookConfiguration
     name: cert-manager-webhook
-    patch: '{"$setElementOrder/webhooks":[{"name":"webhook.cert-manager.io"}],"webhooks":[{"name":"webhook.cert-manager.io","rules":[{"apiGroups":["cert-manager.io","acme.cert-manager.io"],"apiVersions":["*"],"operations":["CREATE","UPDATE"],"resources":["*/*"]}]}]}'
-  - apiVersion: admissionregistration.k8s.io/v1
-    kind: ValidatingWebhookConfiguration
-    name: cert-manager-webhook
-    patch: '{"$setElementOrder/webhooks":[{"name":"webhook.cert-manager.io"}],"webhooks":[{"name":"webhook.cert-manager.io","rules":[{"apiGroups":["cert-manager.io","acme.cert-manager.io"],"apiVersions":["*"],"operations":["CREATE","UPDATE"],"resources":["*/*"]}]}]}'
-  - apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRoleBinding
-    name: cert-manager-webhook:subjectaccessreviews
-    patch: '{"subjects":[{"apiGroup":"","kind":"ServiceAccount","name":"cert-manager-webhook","namespace":"cert-manager"}]}'
-  - apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    name: cert-manager-webhook:dynamic-serving
-    namespace: cert-manager
-    patch: '{"subjects":[{"apiGroup":"","kind":"ServiceAccount","name":"cert-manager-webhook","namespace":"cert-manager"}]}'
-  - apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    name: cert-manager:leaderelection
-    namespace: kube-system
-    patch: '{"subjects":[{"apiGroup":"","kind":"ServiceAccount","name":"cert-manager","namespace":"cert-manager"}]}'
-  - apiVersion: admissionregistration.k8s.io/v1
-    kind: MutatingWebhookConfiguration
-    name: aerospike-operator-mutating-webhook-configuration
-    patch: '{"$setElementOrder/webhooks":[{"name":"maerospikecluster.kb.io"}],"webhooks":[{"name":"maerospikecluster.kb.io","rules":[{"apiGroups":["asdb.aerospike.com"],"apiVersions":["v1beta1"],"operations":["CREATE","UPDATE"],"resources":["aerospikeclusters"]}]}]}'
-  - apiVersion: admissionregistration.k8s.io/v1
-    kind: ValidatingWebhookConfiguration
-    name: aerospike-operator-validating-webhook-configuration
-    patch: '{"$setElementOrder/webhooks":[{"name":"vaerospikecluster.kb.io"}],"webhooks":[{"name":"vaerospikecluster.kb.io","rules":[{"apiGroups":["asdb.aerospike.com"],"apiVersions":["v1beta1"],"operations":["CREATE","UPDATE"],"resources":["aerospikeclusters"]}]}]}'
-# targetCustomizations:
-# - name: dev
-#   clusterSelector:
-#     matchLabels:
-#       env: dev
-#   yaml:
-#     overlays:
-#     # Refers to overlays/noreplication folder
-#     - noreplicationnamespace: fleet-mc-manifest-example
+    operations:
+    - {"op":"remove", "path":"/webhooks/0/name"}
