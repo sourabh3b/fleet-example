@@ -1,9 +1,10 @@
-defaultNamespace: fleet-aerospike-manifest
+defaultNamespace: fleet-local
 diff:
   comparePatches:
   - apiVersion: admissionregistration.k8s.io/v1
     kind: MutatingWebhookConfiguration
     name: cert-manager-webhook
+    namespace: fleet-local
     operations:
     - {"op":"remove", "path":"/webhooks/0/rules"}
     - {"op":"remove", "path":"/webhooks/1/rules"}
