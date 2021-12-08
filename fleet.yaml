@@ -7,4 +7,3 @@ diff:
     namespace: cert-manager
     operations:
     - {"op":"remove", "path":"/webhooks/0/rules"}
-    - {"op":"remove", "path":"/webhooks/1/rules"}

@@ -2,7 +2,7 @@
 
 # Script to install fleet
 
-# install helm on map
+# install helm on mac OS
 brew install helm
 
 # get latest fleet
